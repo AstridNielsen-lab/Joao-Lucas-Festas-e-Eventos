@@ -1,5 +1,5 @@
 import React from 'react';
-import { PartyPopper } from 'lucide-react';
+import { GlassWater } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -16,7 +16,7 @@ const Hero = () => {
         
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
           <div className="text-center">
-            <PartyPopper className="h-16 w-16 text-purple-400 mx-auto mb-6" />
+            <GlassWater className="h-16 w-16 text-purple-400 mx-auto mb-6" />
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
               João Lucas Festas e Eventos
             </h1>

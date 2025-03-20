@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, GlassWater } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +9,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
+            <GlassWater className="h-8 w-8 text-purple-600 mr-2" />
             <span className="text-xl font-bold text-purple-600">João Lucas</span>
           </div>
           

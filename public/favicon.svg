@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="12" cy="12" r="12" fill="#9333ea"/>
-  <path d="M7 15L7 9L10 9C11.6569 9 13 10.3431 13 12C13 13.6569 11.6569 15 10 15L7 15Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M17 15L17 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cocktail Glass Design -->
+  <path d="M7 6H17L14 12V18H10V12L7 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Garnish/Straw -->
+  <path d="M12 12V18" stroke="white" stroke-width="1" stroke-linecap="round"/>
+  <path d="M9 19H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
 </svg>
