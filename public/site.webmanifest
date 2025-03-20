@@ -1,0 +1,14 @@
+{
+  "name": "João Lucas Festas e Eventos",
+  "short_name": "João Lucas",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#9333ea",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
