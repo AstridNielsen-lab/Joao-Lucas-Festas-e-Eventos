@@ -46,26 +46,56 @@ const AIChat = () => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
+      recognitionRef.current.continuous = true;
       recognitionRef.current.interimResults = false;
       recognitionRef.current.lang = 'pt-BR';
 
-      recognitionRef.current.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        setInput(transcript);
-        handleSubmit(new Event('submit') as any);
+      recognitionRef.current.onresult = async (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript;
+        if (transcript.trim()) {
+          setInput(transcript);
+          await handleVoiceSubmit(transcript);
+          // Restart recognition after processing
+          if (isListening) {
+            recognitionRef.current?.start();
+          }
+        }
       };
 
       recognitionRef.current.onend = () => {
-        setIsListening(false);
+        // Automatically restart if still listening
+        if (isListening && recognitionRef.current) {
+          recognitionRef.current.start();
+        } else {
+          setIsListening(false);
+        }
       };
 
       recognitionRef.current.onerror = (event) => {
         console.error('Speech recognition error:', event.error);
-        setIsListening(false);
+        if (event.error !== 'no-speech') {
+          setIsListening(false);
+        }
       };
     }
-  }, []);
+  }, [isListening]);
+
+  const handleVoiceSubmit = async (voiceInput: string) => {
+    const userMessage = { text: voiceInput, isUser: true };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    const aiResponse = await generateAIResponse(voiceInput);
+    const aiMessage = { text: aiResponse, isUser: false };
+    setMessages(prev => [...prev, aiMessage]);
+    setIsLoading(false);
+    speakMessage(aiResponse);
+    
+    if (isMinimized) {
+      setHasNewMessage(true);
+    }
+  };
 
   const toggleVoiceInput = () => {
     if (!recognitionRef.current) {
@@ -134,6 +164,11 @@ const AIChat = () => {
     setIsMinimized(!isMinimized);
     if (!isMinimized) {
       setHasNewMessage(false);
+      // Stop listening when minimizing
+      if (isListening && recognitionRef.current) {
+        recognitionRef.current.stop();
+        setIsListening(false);
+      }
     }
   };
 
@@ -201,15 +236,16 @@ const AIChat = () => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Digite sua mensagem..."
+            placeholder={isListening ? 'Ouvindo...' : 'Digite sua mensagem...'}
             className="flex-1 p-2 bg-white/10 text-white border border-white/20 rounded-md focus:outline-none focus:border-white placeholder-gray-400"
+            disabled={isListening}
           />
           <button
             type="button"
             onClick={toggleVoiceInput}
             className={`p-2 rounded-md transition-colors ${
               isListening 
-                ? 'bg-red-500 hover:bg-red-600' 
+                ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
                 : 'bg-white/10 hover:bg-white/20'
             }`}
             title={isListening ? 'Parar gravação' : 'Gravar mensagem'}
@@ -218,11 +254,17 @@ const AIChat = () => {
           </button>
           <button
             type="submit"
-            className="bg-white text-black p-2 rounded-md hover:bg-gray-200 transition-colors"
+            disabled={isListening}
+            className="bg-white text-black p-2 rounded-md hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send size={20} />
           </button>
         </div>
+        {isListening && (
+          <p className="text-sm text-gray-400 mt-2">
+            Fale sua mensagem. O envio será automático após cada pausa.
+          </p>
+        )}
       </form>
     </div>
   );
