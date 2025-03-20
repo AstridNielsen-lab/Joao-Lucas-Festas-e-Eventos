@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Volume2, MessageCircle } from 'lucide-react';
+import { Send, Volume2, Wine } from 'lucide-react';
 import axios from 'axios';
 
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
@@ -10,7 +10,7 @@ interface Message {
   isUser: boolean;
 }
 
-const AIChat = () => {
+const AIChat: React.FC = () => {
   const [isMinimized, setIsMinimized] = useState(true);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -53,7 +53,7 @@ const AIChat = () => {
         {
           contents: [{
             parts: [{
-              text: `Você é João Lucas, especialista em festas e eventos. Responda de forma curta e direta, sem usar caracteres especiais ou formatação. Limite a resposta a 2-3 frases curtas. Mensagem: ${userMessage}`
+              text: `Você é um bartender profissional e especialista em coquetelaria, com vasto conhecimento em bebidas, drinks e harmonização. Responda de forma curta e direta, sem usar caracteres especiais ou formatação. Limite a resposta a 2-3 frases curtas. Se perguntarem sobre comida, sugira que o foco é em bebidas e drinks, mas pode dar dicas gerais de harmonização. Mensagem: ${userMessage}`
             }]
           }]
         }
@@ -99,28 +99,28 @@ const AIChat = () => {
       <button
         id="chat-icon"
         onClick={toggleChat}
-        className="fixed bottom-4 right-4 bg-purple-600 text-white p-4 rounded-full shadow-lg hover:bg-purple-700 transition-opacity duration-300"
+        className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded-full shadow-lg hover:bg-gray-700 transition-opacity duration-300"
       >
-        <MessageCircle size={24} />
+        <Wine size={24} />
       </button>
     );
   }
 
   return (
     <div className="fixed bottom-4 right-4 w-96 bg-white rounded-lg shadow-xl flex flex-col" style={{ height: '500px' }}>
-      <div className="bg-purple-600 text-white p-4 rounded-t-lg flex justify-between items-center cursor-pointer" onClick={toggleChat}>
+      <div className="bg-gray-800 text-white p-4 rounded-t-lg flex justify-between items-center cursor-pointer" onClick={toggleChat}>
         <div>
-          <h3 className="text-lg">Chat com João Lucas</h3>
-          <p className="text-sm">Especialista em Festas</p>
+          <h3 className="text-lg">Bartender Virtual</h3>
+          <p className="text-sm">Especialista em Drinks</p>
         </div>
         <button className="text-white hover:text-gray-200">
-          <MessageCircle size={20} />
+          <Wine size={20} />
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        <div className="bg-purple-100 p-3 rounded-lg">
-          <p>Olá! Como posso ajudar com seu evento?</p>
+        <div className="bg-gray-100 p-3 rounded-lg">
+          <p>Olá! Sou especialista em drinks e coquetelaria. Como posso ajudar?</p>
         </div>
         
         {messages.map((message, index) => (
@@ -128,7 +128,7 @@ const AIChat = () => {
             key={index}
             className={`p-3 rounded-lg ${
               message.isUser
-                ? 'bg-purple-600 text-white ml-auto'
+                ? 'bg-gray-800 text-white ml-auto'
                 : 'bg-gray-100 text-gray-800'
             } max-w-[80%] ${message.isUser ? 'ml-auto' : 'mr-auto'}`}
           >
@@ -136,7 +136,7 @@ const AIChat = () => {
             {!message.isUser && (
               <button
                 onClick={() => speakMessage(message.text)}
-                className="mt-2 text-purple-600 hover:text-purple-800"
+                className="mt-2 text-gray-600 hover:text-gray-800"
               >
                 <Volume2 size={16} />
               </button>
@@ -158,12 +158,12 @@ const AIChat = () => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Digite sua mensagem..."
-            className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+            placeholder="Pergunte sobre drinks..."
+            className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800"
           />
           <button
             type="submit"
-            className="bg-purple-600 text-white p-2 rounded-md hover:bg-purple-700"
+            className="bg-gray-800 text-white p-2 rounded-md hover:bg-gray-700"
           >
             <Send size={20} />
           </button>
