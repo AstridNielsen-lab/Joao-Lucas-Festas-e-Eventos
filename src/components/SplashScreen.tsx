@@ -19,7 +19,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-purple-600 flex items-center justify-center z-50 transition-opacity duration-1000 ${
+      className={`fixed inset-0 bg-black flex items-center justify-center z-50 transition-opacity duration-1000 ${
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
     >
@@ -28,7 +28,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
         <h1 className="text-4xl font-bold text-white mb-4 animate-fade-in">
           João Lucas Festas e Eventos
         </h1>
-        <p className="text-xl text-white opacity-90">
+        <p className="text-xl text-gray-400">
           Transformando momentos em memórias inesquecíveis
         </p>
       </div>

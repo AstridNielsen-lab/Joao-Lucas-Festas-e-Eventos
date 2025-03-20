@@ -99,7 +99,7 @@ const AIChat = () => {
       <button
         id="chat-icon"
         onClick={toggleChat}
-        className="fixed bottom-4 right-4 bg-purple-600 text-white p-4 rounded-full shadow-lg hover:bg-purple-700 transition-opacity duration-300"
+        className="fixed bottom-4 right-4 bg-black text-white p-4 rounded-full shadow-lg hover:bg-white hover:text-black border-2 border-white transition-all duration-300"
       >
         <MessageCircle size={24} />
       </button>
@@ -107,20 +107,20 @@ const AIChat = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-96 bg-white rounded-lg shadow-xl flex flex-col" style={{ height: '500px' }}>
-      <div className="bg-purple-600 text-white p-4 rounded-t-lg flex justify-between items-center cursor-pointer" onClick={toggleChat}>
+    <div className="fixed bottom-4 right-4 w-96 bg-black/90 rounded-lg shadow-xl flex flex-col border border-white/10" style={{ height: '500px' }}>
+      <div className="bg-black text-white p-4 rounded-t-lg flex justify-between items-center cursor-pointer border-b border-white/10" onClick={toggleChat}>
         <div>
           <h3 className="text-lg">Chat com João Lucas</h3>
-          <p className="text-sm">Especialista em Festas</p>
+          <p className="text-sm text-gray-400">Especialista em Festas</p>
         </div>
-        <button className="text-white hover:text-gray-200">
+        <button className="text-white hover:text-gray-300">
           <MessageCircle size={20} />
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        <div className="bg-purple-100 p-3 rounded-lg">
-          <p>Olá! Como posso ajudar com seu evento?</p>
+        <div className="bg-white/10 p-3 rounded-lg">
+          <p className="text-white">Olá! Como posso ajudar com seu evento?</p>
         </div>
         
         {messages.map((message, index) => (
@@ -128,15 +128,15 @@ const AIChat = () => {
             key={index}
             className={`p-3 rounded-lg ${
               message.isUser
-                ? 'bg-purple-600 text-white ml-auto'
-                : 'bg-gray-100 text-gray-800'
+                ? 'bg-white text-black ml-auto'
+                : 'bg-white/10 text-white'
             } max-w-[80%] ${message.isUser ? 'ml-auto' : 'mr-auto'}`}
           >
             <p>{message.text}</p>
             {!message.isUser && (
               <button
                 onClick={() => speakMessage(message.text)}
-                className="mt-2 text-purple-600 hover:text-purple-800"
+                className="mt-2 text-gray-300 hover:text-white"
               >
                 <Volume2 size={16} />
               </button>
@@ -145,25 +145,25 @@ const AIChat = () => {
         ))}
         
         {isLoading && (
-          <div className="bg-gray-100 p-3 rounded-lg max-w-[80%]">
-            <p>Digitando...</p>
+          <div className="bg-white/10 p-3 rounded-lg max-w-[80%]">
+            <p className="text-white">Digitando...</p>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="p-4 border-t">
+      <form onSubmit={handleSubmit} className="p-4 border-t border-white/10">
         <div className="flex space-x-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Digite sua mensagem..."
-            className="flex-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+            className="flex-1 p-2 bg-white/10 text-white border border-white/20 rounded-md focus:outline-none focus:border-white placeholder-gray-400"
           />
           <button
             type="submit"
-            className="bg-purple-600 text-white p-2 rounded-md hover:bg-purple-700"
+            className="bg-white text-black p-2 rounded-md hover:bg-gray-200 transition-colors"
           >
             <Send size={20} />
           </button>
