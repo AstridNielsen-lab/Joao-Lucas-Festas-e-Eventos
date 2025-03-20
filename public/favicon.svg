@@ -1,4 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-glass-water">
-  <path d="M15.2 22H8.8a2 2 0 0 1-2-1.79L5 3h14l-1.8 17.21A2 2 0 0 1 15.2 22Z" fill="black" stroke="white"/>
-  <path d="M6 12a5 5 0 0 1 6 0 5 5 0 0 0 6 0" stroke="white"/>
+<svg 
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="24"
+  height="24"
+>
+  <path 
+    fill="white" 
+    d="M12 20v-7L20 4H4l8 9v7m-3 1h6" 
+    stroke="white"
+    strokeWidth="1.5"
+  />
+  <circle 
+    cx="12" 
+    cy="7" 
+    r="2" 
+    fill="#ef4444" 
+  />
 </svg>
