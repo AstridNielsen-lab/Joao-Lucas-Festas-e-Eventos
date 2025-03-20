@@ -19,6 +19,7 @@ const AIChat = () => {
   const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const isSpeakingRef = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,20 +52,19 @@ const AIChat = () => {
       recognitionRef.current.lang = 'pt-BR';
 
       recognitionRef.current.onresult = async (event) => {
-        const transcript = event.results[event.results.length - 1][0].transcript;
-        if (transcript.trim()) {
-          setInput(transcript);
-          await handleVoiceSubmit(transcript);
-          // Restart recognition after processing
-          if (isListening) {
-            recognitionRef.current?.start();
+        // Only process speech if we're not currently speaking a response
+        if (!isSpeakingRef.current) {
+          const transcript = event.results[event.results.length - 1][0].transcript;
+          if (transcript.trim()) {
+            setInput(transcript);
+            await handleVoiceSubmit(transcript);
           }
         }
       };
 
       recognitionRef.current.onend = () => {
-        // Automatically restart if still listening
-        if (isListening && recognitionRef.current) {
+        // Only restart if we're still in listening mode and not speaking
+        if (isListening && !isSpeakingRef.current && recognitionRef.current) {
           recognitionRef.current.start();
         } else {
           setIsListening(false);
@@ -90,7 +90,18 @@ const AIChat = () => {
     const aiMessage = { text: aiResponse, isUser: false };
     setMessages(prev => [...prev, aiMessage]);
     setIsLoading(false);
-    speakMessage(aiResponse);
+    
+    // Temporarily pause recognition while speaking
+    if (recognitionRef.current && isListening) {
+      recognitionRef.current.stop();
+    }
+    
+    await speakMessage(aiResponse);
+    
+    // Resume recognition after speaking if still in listening mode
+    if (isListening && recognitionRef.current) {
+      recognitionRef.current.start();
+    }
     
     if (isMinimized) {
       setHasNewMessage(true);
@@ -112,11 +123,23 @@ const AIChat = () => {
     }
   };
 
-  const speakMessage = (text: string) => {
-    const cleanText = text.replace(/[^a-zA-Z0-9áéíóúâêîôûãõàèìòùç.,!? ]/g, '');
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = 'pt-BR';
-    window.speechSynthesis.speak(utterance);
+  const speakMessage = async (text: string) => {
+    return new Promise<void>((resolve) => {
+      const cleanText = text.replace(/[^a-zA-Z0-9áéíóúâêîôûãõàèìòùç.,!? ]/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'pt-BR';
+      
+      // Mark that we're speaking to prevent recognition
+      isSpeakingRef.current = true;
+      
+      utterance.onend = () => {
+        // Mark that we're done speaking
+        isSpeakingRef.current = false;
+        resolve();
+      };
+      
+      window.speechSynthesis.speak(utterance);
+    });
   };
 
   const generateAIResponse = async (userMessage: string) => {
@@ -153,7 +176,11 @@ const AIChat = () => {
     const aiMessage = { text: aiResponse, isUser: false };
     setMessages(prev => [...prev, aiMessage]);
     setIsLoading(false);
-    speakMessage(aiResponse);
+    
+    // Only speak if we're not in listening mode
+    if (!isListening) {
+      await speakMessage(aiResponse);
+    }
     
     if (isMinimized) {
       setHasNewMessage(true);
