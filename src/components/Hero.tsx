@@ -1,5 +1,27 @@
 import React from 'react';
 
+const MartiniIcon = () => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width="24" 
+    height="24" 
+    className="h-24 w-24 text-white mx-auto mb-6"
+  >
+    <path 
+      fill="currentColor" 
+      d="M12 20v-7L20 4H4l8 9v7m-3 1h6" 
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <circle 
+      cx="12" 
+      cy="7" 
+      r="2" 
+      fill="#ef4444" 
+    />
+  </svg>
+);
+
 const Hero = () => {
   return (
     <div id="home" className="pt-16">
@@ -10,11 +32,12 @@ const Hero = () => {
             src="https://images.unsplash.com/photo-1574096079513-d8259312b785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
             alt="Evento elegante"
           />
-          <div className="absolute inset-0 bg-black" style={{ opacity: 1 }}></div>
+          <div className="absolute inset-0 bg-black opacity-80"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-8 h-full flex items-center">
           <div className="text-center w-full">
+            <MartiniIcon />
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
               João Lucas Festas e Eventos
             </h1>
