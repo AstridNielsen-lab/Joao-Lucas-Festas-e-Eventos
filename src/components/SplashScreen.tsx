@@ -1,5 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { GlassWater } from 'lucide-react';
+
+const MartiniIcon = () => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width="24" 
+    height="24" 
+    className="h-24 w-24 text-white mx-auto mb-6 animate-pulse"
+  >
+    <path 
+      fill="currentColor" 
+      d="M12 20v-7L20 4H4l8 9v7m-3 1h6" 
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <circle 
+      cx="12" 
+      cy="7" 
+      r="2" 
+      fill="#ef4444" 
+    />
+  </svg>
+);
 
 interface SplashScreenProps {
   onFinish: () => void;
@@ -22,9 +43,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
       className={`fixed inset-0 bg-black flex items-center justify-center z-50 transition-opacity duration-1000 ${
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
+      style={{ backgroundColor: '#000000' }}
     >
       <div className="text-center">
-        <GlassWater className="h-24 w-24 text-white mx-auto mb-6 animate-pulse" />
+        <MartiniIcon />
         <h1 className="text-4xl font-bold text-white mb-4 animate-fade-in">
           João Lucas Festas e Eventos
         </h1>

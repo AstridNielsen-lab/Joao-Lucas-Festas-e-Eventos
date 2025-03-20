@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { PartyPopper, Phone, Clock, MapPin, GlassWater, Music2, Users, Sparkles } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,16 +14,18 @@ function App() {
   return (
     <>
       {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-black text-white flex flex-col">
         <Navbar />
-        <Hero />
-        <Services />
-        <DrinkMenu />
-        <Contact />
+        <main className="flex-grow">
+          <Hero />
+          <Services />
+          <DrinkMenu />
+          <Contact />
+        </main>
         <AIChat />
         <RadioPlayer />
-        <footer className="bg-black/90 text-white py-8 border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <footer className="bg-black/90 text-white py-8 border-t border-white/10 relative z-10 mt-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-20 md:pb-8">
             <p className="text-sm">
               Desenvolvido por{' '}
               <a 

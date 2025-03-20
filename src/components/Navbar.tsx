@@ -1,5 +1,27 @@
 import React, { useState } from 'react';
-import { Menu, X, GlassWater } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+
+const MartiniIcon = () => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width="24" 
+    height="24" 
+    className="h-8 w-8 text-white mr-2"
+  >
+    <path 
+      fill="currentColor" 
+      d="M12 20v-7L20 4H4l8 9v7m-3 1h6" 
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <circle 
+      cx="12" 
+      cy="7" 
+      r="2" 
+      fill="#ef4444" 
+    />
+  </svg>
+);
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +31,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <GlassWater className="h-8 w-8 text-white mr-2" />
+            <MartiniIcon />
             <span className="text-xl font-bold text-white">João Lucas</span>
           </div>
           
