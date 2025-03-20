@@ -50,6 +50,56 @@ const drinks = [
     name: 'Old Fashioned',
     description: 'Bourbon, angostura, açúcar - Um clássico atemporal',
     image: 'https://images.unsplash.com/photo-1551751299-1b51cab2694c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Espresso Martini',
+    description: 'Vodka, licor de café, café expresso - O drink perfeito para os amantes de café',
+    image: 'https://images.unsplash.com/photo-1545418950-8d3d76219dec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Manhattan',
+    description: 'Whiskey, vermute tinto, angostura - Elegância em estado líquido',
+    image: 'https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Daiquiri',
+    description: 'Rum branco, suco de limão, açúcar - Simplicidade e refrescância',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Mai Tai',
+    description: 'Rum escuro, licor de laranja, orgeat, limão - O clássico tiki drink',
+    image: 'https://images.unsplash.com/photo-1549746439-e6e9d8156074?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Whiskey Sour',
+    description: 'Whiskey, limão, açúcar, clara de ovo - Suavidade e equilíbrio perfeito',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Bloody Mary',
+    description: 'Vodka, suco de tomate, especiarias - O drink do brunch por excelência',
+    image: 'https://images.unsplash.com/photo-1578664182354-e3878571bcd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'French 75',
+    description: 'Gin, champagne, limão, açúcar - Elegância e frescor em uma taça',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Dark n Stormy',
+    description: 'Rum escuro, cerveja de gengibre, limão - A tempestade perfeita de sabores',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Paloma',
+    description: 'Tequila, refrigerante de toranja, limão - O drink mexicano refrescante',
+    image: 'https://images.unsplash.com/photo-1613461920867-9ea91b209848?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+  },
+  {
+    name: 'Aviation',
+    description: 'Gin, licor de violeta, marasquino, limão - Um coquetel com cor única',
+    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   }
 ];
 

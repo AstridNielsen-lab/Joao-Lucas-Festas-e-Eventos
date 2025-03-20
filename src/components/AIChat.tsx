@@ -47,7 +47,7 @@ const AIChat = () => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false; // Changed to false to prevent continuous listening
+      recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
       recognitionRef.current.lang = 'pt-BR';
 
@@ -55,7 +55,6 @@ const AIChat = () => {
         const now = Date.now();
         const transcript = event.results[event.results.length - 1][0].transcript;
         
-        // Prevent processing if we're speaking or if this is a duplicate result
         if (!isSpeakingRef.current && 
             transcript.trim() && 
             now - lastProcessedTimestampRef.current > 1000) {
@@ -66,7 +65,6 @@ const AIChat = () => {
       };
 
       recognitionRef.current.onend = () => {
-        // Only restart if we're still in listening mode and not speaking
         if (isListening && !isSpeakingRef.current) {
           setTimeout(() => {
             if (isListening && recognitionRef.current && !isSpeakingRef.current) {
@@ -88,14 +86,13 @@ const AIChat = () => {
   }, [isListening]);
 
   const handleVoiceSubmit = async (voiceInput: string) => {
-    if (isSpeakingRef.current) return; // Prevent processing while speaking
+    if (isSpeakingRef.current) return;
 
     const userMessage = { text: voiceInput, isUser: true };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
-    // Stop recognition while processing
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
@@ -107,7 +104,6 @@ const AIChat = () => {
     
     await speakMessage(aiResponse);
     
-    // Resume recognition after a short delay
     if (isListening && recognitionRef.current) {
       setTimeout(() => {
         if (isListening && recognitionRef.current && !isSpeakingRef.current) {
@@ -131,8 +127,8 @@ const AIChat = () => {
       recognitionRef.current.stop();
       setIsListening(false);
     } else {
-      isSpeakingRef.current = false; // Reset speaking state
-      lastProcessedTimestampRef.current = 0; // Reset timestamp
+      isSpeakingRef.current = false;
+      lastProcessedTimestampRef.current = 0;
       recognitionRef.current.start();
       setIsListening(true);
     }
@@ -162,12 +158,40 @@ const AIChat = () => {
 
   const generateAIResponse = async (userMessage: string) => {
     try {
+      const prompt = `Você é João Lucas, especialista em eventos e coquetelaria internacional. Você ajuda com:
+
+1. ORÇAMENTOS E PLANEJAMENTO DE EVENTOS:
+- Forneça estimativas de custos baseadas no tipo e tamanho do evento
+- Sugira pacotes de serviços adequados
+- Dê dicas de planejamento e organização
+- Explique os serviços disponíveis (bartenders, garçons, segurança, etc.)
+- Ajude com a logística do evento
+
+2. CONSULTORIA DE BEBIDAS:
+- Recomende drinks para diferentes ocasiões
+- Calcule quantidades de bebidas necessárias
+- Sugira combinações de drinks para o evento
+- Forneça orçamentos para serviço de bar
+
+3. RECEITAS DE DRINKS:
+Se perguntarem sobre um drink específico, forneça:
+- Lista de ingredientes com medidas
+- Modo de preparo detalhado
+- Tipo de copo adequado
+- Decoração recomendada
+- Dica profissional
+
+Mantenha as respostas profissionais mas amigáveis, focando em fechar negócio.
+Para orçamentos, sempre sugira contato via WhatsApp: (44) 98802-4931
+
+Mensagem do usuário: ${userMessage}`;
+
       const response = await axios.post(
         `${API_URL}?key=${API_KEY}`,
         {
           contents: [{
             parts: [{
-              text: `Você é João Lucas, especialista em festas e eventos. Responda de forma curta e direta, sem usar caracteres especiais ou formatação. Limite a resposta a 2-3 frases curtas. Mensagem: ${userMessage}`
+              text: prompt
             }]
           }]
         }
@@ -232,7 +256,7 @@ const AIChat = () => {
       <div className="bg-black text-white p-4 rounded-t-lg flex justify-between items-center cursor-pointer border-b border-white/10" onClick={toggleChat}>
         <div>
           <h3 className="text-lg">Chat com João Lucas</h3>
-          <p className="text-sm text-gray-400">Especialista em Festas</p>
+          <p className="text-sm text-gray-400">Especialista em Eventos e Coquetelaria</p>
         </div>
         <button className="text-white hover:text-gray-300">
           <MessageCircle size={20} />
@@ -241,7 +265,7 @@ const AIChat = () => {
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         <div className="bg-white/10 p-3 rounded-lg">
-          <p className="text-white">Olá! Como posso ajudar com seu evento?</p>
+          <p className="text-white">Olá! Sou especialista em eventos e coquetelaria. Posso ajudar com orçamentos, planejamento de festas e receitas de drinks!</p>
         </div>
         
         {messages.map((message, index) => (
@@ -279,7 +303,7 @@ const AIChat = () => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={isListening ? 'Ouvindo...' : 'Digite sua mensagem...'}
+            placeholder={isListening ? 'Ouvindo...' : 'Pergunte sobre eventos, orçamentos ou drinks...'}
             className="flex-1 p-2 bg-white/10 text-white border border-white/20 rounded-md focus:outline-none focus:border-white placeholder-gray-400"
             disabled={isListening}
           />
