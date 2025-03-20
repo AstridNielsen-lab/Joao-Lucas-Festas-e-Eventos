@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import DrinkMenu from './components/DrinkMenu';
 import Contact from './components/Contact';
+import AIChat from './components/AIChat';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Services />
       <DrinkMenu />
       <Contact />
+      <AIChat />
     </div>
   );
 }
