@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Star } from 'lucide-react';
 
 const MartiniIcon = () => (
   <svg 
@@ -31,8 +31,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <MartiniIcon />
-            <span className="text-xl font-bold text-white">João Lucas</span>
+            <a href="https://g.co/kgs/McCRJfz" target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-80 transition-opacity">
+              <MartiniIcon />
+              <span className="text-xl font-bold text-white">João Lucas</span>
+            </a>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -40,6 +42,15 @@ const Navbar = () => {
             <a href="#services" className="text-gray-300 hover:text-white transition-colors">Serviços</a>
             <a href="#drinks" className="text-gray-300 hover:text-white transition-colors">Drinks</a>
             <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contato</a>
+            <a 
+              href="https://g.page/r/CYFSGi_eUio4EBM/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300 transition-colors"
+            >
+              <Star className="h-5 w-5" />
+              <span>Avaliar</span>
+            </a>
             <a 
               href="https://wa.me/5544988024931"
               target="_blank"
@@ -64,6 +75,15 @@ const Navbar = () => {
               <a href="#services" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Serviços</a>
               <a href="#drinks" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Drinks</a>
               <a href="#contact" className="block px-3 py-2 text-gray-300 hover:text-white transition-colors">Contato</a>
+              <a 
+                href="https://g.page/r/CYFSGi_eUio4EBM/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-3 py-2 text-yellow-400 hover:text-yellow-300 transition-colors"
+              >
+                <Star className="h-5 w-5" />
+                <span>Avaliar no Google</span>
+              </a>
               <a 
                 href="https://wa.me/5544988024931"
                 target="_blank"

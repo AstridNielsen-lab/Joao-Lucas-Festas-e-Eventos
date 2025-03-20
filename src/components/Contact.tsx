@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Instagram, Facebook } from 'lucide-react';
+import { Phone, Instagram, Facebook, Star, MapPin } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -43,6 +43,26 @@ const Contact = () => {
           >
             <Facebook className="h-6 w-6" />
             <span>Facebook</span>
+          </a>
+
+          <a
+            href="https://g.co/kgs/McCRJfz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
+          >
+            <MapPin className="h-6 w-6" />
+            <span>Google Business</span>
+          </a>
+
+          <a
+            href="https://g.page/r/CYFSGi_eUio4EBM/review"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-3 text-yellow-400 hover:text-yellow-300 transition-colors"
+          >
+            <Star className="h-6 w-6" />
+            <span>Avaliar no Google</span>
           </a>
         </div>
 
