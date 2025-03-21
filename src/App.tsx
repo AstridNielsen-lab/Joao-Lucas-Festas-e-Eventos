@@ -45,14 +45,14 @@ function App() {
               </a>
             </p>
             <p className="text-sm mt-2">
-              Programador: Julio Campos Machado -{' '}
+              Programador: Converse com a Persona -{' '}
               <a 
                 href="https://character.ai/chat/MpcnLX8s7miWD3XSUa4I6WS4YHRKIL-qJ4AlbADDGrs" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300"
               >
-                WhatsApp: (11) 99294-6628
+                Julio Campos Machado WhatsApp: (11) 99294-6628
               </a>
             </p>
           </div>
