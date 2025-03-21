@@ -27,7 +27,7 @@ const Contact = () => {
 
          
           <a
-            href="https://www.facebook.com/profile.php?id=100080286429067"
+            href="https://www.facebook.com/profile.php?id=61574480669064"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
