@@ -34,7 +34,7 @@ const images: Image[] = [
     category: "Temáticas"
   },
   {
-    url: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/bardrink.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Bar e Drinks",
     category: "Drinks"
   },
