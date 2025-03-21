@@ -45,7 +45,7 @@ function App() {
               </a>
             </p>
             <p className="text-sm mt-2">
-             Programador Julio Campos Machado  {' '} </p>
+             Programador Julio Campos Machado  {' '} 
               <a 
                 href="https://character.ai/chat/MpcnLX8s7miWD3XSUa4I6WS4YHRKIL-qJ4AlbADDGrs" 
                 target="_blank" 
@@ -54,7 +54,7 @@ function App() {
               >
               Converse com a Persona
               </a>
-            
+            </p>
           </div>
         </footer>
       </div>
