@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowDown, ArrowUp, MessageCircle, X, Send, Mic, MicOff } from 'lucide-react';
+import { ArrowDown, ArrowUp, MessageCircle, X, Send, Mic, MicOff, Phone, User } from 'lucide-react';
 import axios from 'axios';
 
 interface Message {
   text: string;
   isUser: boolean;
   timestamp: number;
+}
+
+interface OrderFormData {
+  name: string;
+  phone: string;
 }
 
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
@@ -121,6 +126,12 @@ const DrinkMenu = () => {
   const [input, setInput] = useState<{ [key: number]: string }>({});
   const [isLoading, setIsLoading] = useState<{ [key: number]: boolean }>({});
   const [isListening, setIsListening] = useState<{ [key: number]: boolean }>({});
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [selectedDrinkIndex, setSelectedDrinkIndex] = useState<number | null>(null);
+  const [orderForm, setOrderForm] = useState<OrderFormData>({
+    name: '',
+    phone: ''
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
@@ -245,6 +256,27 @@ Pergunta do usuário: ${userMessage}`;
     setShowAiChat(showAiChat === index ? null : index);
   };
 
+  const handleOrderClick = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedDrinkIndex(index);
+    setShowOrderModal(true);
+  };
+
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedDrinkIndex === null) return;
+
+    const selectedDrink = drinks[selectedDrinkIndex];
+    const phoneNumber = orderForm.phone.replace(/\D/g, '');
+    const message = `Olá! Me chamo ${orderForm.name} e gostaria de fazer um pedido:\n\n*${selectedDrink.name}*\n${selectedDrink.description}`;
+    
+    const whatsappUrl = `https://wa.me/5544988024931?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, '_blank');
+    setShowOrderModal(false);
+    setOrderForm({ name: '', phone: '' });
+  };
+
   return (
     <div id="drinks" className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -303,16 +335,13 @@ Pergunta do usuário: ${userMessage}`;
                         <MessageCircle className="h-4 w-4 mr-2" />
                         Perguntar ao João
                       </button>
-                      <a
-                        href="https://wa.me/5544988024931"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={(e) => handleOrderClick(index, e)}
                         className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <MessageCircle className="h-4 w-4 mr-2" />
                         Pedir agora
-                      </a>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -413,10 +442,71 @@ Pergunta do usuário: ${userMessage}`;
           </a>
         </div>
       </div>
+
+      {/* Order Modal */}
+      {showOrderModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-black/90 rounded-lg p-6 max-w-md w-full border border-white/10">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-semibold text-white">Fazer Pedido</h3>
+              <button
+                onClick={() => setShowOrderModal(false)}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <form onSubmit={handleOrderSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Nome
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    type="text"
+                    id="name"
+                    value={orderForm.name}
+                    onChange={(e) => setOrderForm(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full bg-white/10 border border-white/20 rounded-md py-2 pl-10 pr-4 text-white placeholder-gray-400 focus:outline-none focus:border-white"
+                    placeholder="Seu nome"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                  Telefone
+                </label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={orderForm.phone}
+                    onChange={(e) => setOrderForm(prev => ({ ...prev, phone: e.target.value }))}
+                    className="w-full bg-white/10 border border-white/20 rounded-md py-2 pl-10 pr-4 text-white placeholder-gray-400 focus:outline-none focus:border-white"
+                    placeholder="(00) 00000-0000"
+                    required
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition-colors flex items-center justify-center"
+              >
+                <MessageCircle className="h-5 w-5 mr-2" />
+                Enviar Pedido via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default DrinkMenu;
-
-export default DrinkMenu
