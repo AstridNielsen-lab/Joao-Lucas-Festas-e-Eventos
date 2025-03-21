@@ -123,22 +123,22 @@ const djs: Partner[] = [
 
 const decorators: Partner[] = [
   {
-    name: "Flores & Eventos",
-    address: "Rua das Orquídeas, 123",
+    name: "Ateliê das Festas",
+    address: "Praça Brasil, 138",
     city: "Paranavaí/PR",
     description: "Decoração completa para casamentos e festas"
   },
   {
-    name: "Arte em Decoração",
-    address: "Avenida Central, 456",
+    name: "Mi Maria Festas Especiais Decor",
+    address: "Rua Hilda Camargo Botelho , 390",
     city: "Paranavaí/PR",
-    description: "Especialista em decoração temática"
+    description: "Decoração completa para casamentos e festas"
   },
   {
-    name: "Elegance Decor",
-    address: "Rua dos Girassóis, 789",
+    name: "Palácio das Festas",
+    address: "Avenida José Felipe Tequinha, 42",
     city: "Paranavaí/PR",
-    description: "Decoração moderna e sofisticada"
+    description: "Decoração completa para casamentos e festas"
   }
 ];
 
