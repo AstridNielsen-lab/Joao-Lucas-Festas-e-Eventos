@@ -29,7 +29,7 @@ const images: Image[] = [
     category: "Formaturas"
   },
   {
-    url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "https://www.misztal.de/wp-content/uploads/2023/01/GRID-innenaufnahme-disco-wuppertal-4545.webp?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Festa Temática",
     category: "Temáticas"
   },
