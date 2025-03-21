@@ -14,7 +14,7 @@ const images: Image[] = [
     category: "Casamentos"
   },
   {
-    url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "https://i0.wp.com/blog.elikafestas.com.br/wp-content/uploads/2020/06/Festa-Corporativa-12.jpeg?resize=960%2C720?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Festa Corporativa",
     category: "Corporativo"
   },
