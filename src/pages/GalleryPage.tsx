@@ -9,7 +9,7 @@ interface Image {
 
 const images: Image[] = [
   {
-    url: "https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/casamento%20elegante.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "hhttps://cdn0.casamentos.com.br/vendor/4284/3_2/960/jpg/decor-elite-10-04-18-thaisefellipe-48-copy_13_224284.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Casamento Elegante",
     category: "Casamentos"
   },
