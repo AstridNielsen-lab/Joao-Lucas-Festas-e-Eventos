@@ -78,46 +78,46 @@ const buffets: Partner[] = [
 
 const venues: Partner[] = [
   {
-    name: "Espaço Glamour",
-    address: "Rua das Flores, 123",
+    name: "Centro de Eventos",
+    address: "Avenida Deputado Heitor Alencar Furtado",
     neighborhood: "Centro",
     city: "Paranavaí/PR",
-    description: "Salão elegante com capacidade para 300 pessoas"
+    description: "Salão elegante consultar a capacidade"
   },
   {
-    name: "Villa Eventos",
-    address: "Avenida Principal, 789",
-    neighborhood: "Jardim Europa",
+    name: "Clube Idade Dourada",
+    address: "Rua Hilda Camargo Botelho, 390",
+    neighborhood: "Parque Morumbi",
     city: "Paranavaí/PR",
-    description: "Espaço ao ar livre com área coberta"
+    description: "Salão elegante consultar a capacidade"
   },
   {
-    name: "Casa de Festas Paraíso",
-    address: "Rua das Palmeiras, 456",
-    neighborhood: "Jardim São Jorge",
+    name: "Recanto Conquista",
+    address: "Rua:Vitor Lopes, n°118",
+    neighborhood: "Jardim Ipê",
     city: "Paranavaí/PR",
-    description: "Ambiente climatizado para até 200 convidados"
+    description: "Salão elegante consultar a capacidade"
   }
 ];
 
 const djs: Partner[] = [
   {
-    name: "DJ Marco Silva",
+    name: "AUDIO ZERO SOM DJ GUI AVELAR",
     address: "Atendimento em toda região",
     city: "Paranavaí/PR",
     description: "Especialista em casamentos e formaturas"
   },
   {
-    name: "Som & Luz Produções",
-    address: "Rua da Música, 789",
+    name: "Fabinho Acústico",
+    address: "Rua Sinesio Torres, 184",
     city: "Paranavaí/PR",
-    description: "Equipamento profissional e iluminação completa"
+    description: "- Música ao vivo"
   },
   {
-    name: "DJ Ana Beats",
-    address: "Disponível para eventos em",
+    name: "Leizi & Rafael",
+    address: "Rua Aristides Lobo, 350",
     city: "Paranavaí/PR",
-    description: "Música eletrônica e pop para festas"
+    description: "Sertanejo Bom Demais"
   }
 ];
 
