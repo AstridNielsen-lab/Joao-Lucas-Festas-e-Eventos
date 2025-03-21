@@ -101,13 +101,7 @@ const venues: Partner[] = [
 ];
 
 const djs: Partner[] = [
-  {
-    name: "AUDIO ZERO SOM DJ GUI AVELAR",
-    address: "Atendimento em toda região",
-    city: "Paranavaí/PR",
-    description: "Especialista em casamentos e formaturas"
-  },
-  {
+   {
     name: "Fabinho Acústico",
     address: "Rua Sinesio Torres, 184",
     city: "Paranavaí/PR",
