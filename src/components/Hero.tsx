@@ -37,6 +37,25 @@ const Hero = () => {
         
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-8 h-full flex items-center">
           <div className="text-center w-full">
+            <div className="mb-8 hidden">
+              <iframe
+                src="about:blank"
+                className="w-0 h-0 border-0"
+                title="Radio Stream"
+                srcDoc={`
+                  <html>
+                    <head>
+                      <meta name="viewport" content="width=device-width">
+                    </head>
+                    <body>
+                      <video controls autoplay name="media">
+                        <source src="http://88.150.230.110/stream.mp3?ipport=88.150.230.110_30984" type="audio/mpeg">
+                      </video>
+                    </body>
+                  </html>
+                `}
+              />
+            </div>
             <MartiniIcon />
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
               João Lucas Festas e Eventos
@@ -46,12 +65,12 @@ const Hero = () => {
             </p>
             <div className="mt-10 flex justify-center">
               <a
-                href="https://wa.me/5544988024931"
+                href="https://chat.whatsapp.com/KlvIVmy75o4IW0sFbCq4UG"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-black transition-colors"
               >
-                Solicite um orçamento!
+                Seja Parceiro
               </a>
             </div>
           </div>

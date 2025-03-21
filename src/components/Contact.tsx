@@ -68,12 +68,12 @@ const Contact = () => {
 
         <div className="mt-12 text-center">
           <a
-            href="https://wa.me/5544988024931"
+            href="https://chat.whatsapp.com/KlvIVmy75o4IW0sFbCq4UG"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-black transition-colors"
           >
-            Solicite seu orçamento agora!
+            Seja Parceiro
           </a>
         </div>
       </div>
