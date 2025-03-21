@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Calendar, User, ArrowRight, ArrowDown, ArrowUp, MessageCircle, X } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Calendar, User, ArrowRight, ArrowDown, ArrowUp, MessageCircle, X, Send, Mic, MicOff } from 'lucide-react';
+import axios from 'axios';
 
 interface BlogPost {
   title: string;
@@ -10,6 +11,15 @@ interface BlogPost {
   author: string;
   category: string;
 }
+
+interface Message {
+  text: string;
+  isUser: boolean;
+  timestamp: number;
+}
+
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+const API_KEY = "AIzaSyBAUeMGmXN5Cfyo4Rp-83pBZCV4suJRBvQ";
 
 const posts: BlogPost[] = [
   {
@@ -133,6 +143,124 @@ const posts: BlogPost[] = [
 const BlogPage = () => {
   const [expandedPost, setExpandedPost] = useState<number | null>(null);
   const [showAiChat, setShowAiChat] = useState<number | null>(null);
+  const [messages, setMessages] = useState<{ [key: number]: Message[] }>({});
+  const [input, setInput] = useState<{ [key: number]: string }>({});
+  const [isLoading, setIsLoading] = useState<{ [key: number]: boolean }>({});
+  const [isListening, setIsListening] = useState<{ [key: number]: boolean }>({});
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
+
+  useEffect(() => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'pt-BR';
+
+      recognitionRef.current.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        if (showAiChat !== null) {
+          setInput(prev => ({ ...prev, [showAiChat]: transcript }));
+          handleSubmit(showAiChat)(new Event('submit') as any);
+        }
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(prev => Object.keys(prev).reduce((acc, key) => ({
+          ...acc,
+          [key]: false
+        }), {}));
+      };
+    }
+  }, [showAiChat]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const generateAIResponse = async (userMessage: string, postIndex: number) => {
+    try {
+      const post = posts[postIndex];
+      const prompt = `Você é João Lucas, especialista em eventos, respondendo a uma pergunta sobre o artigo "${post.title}". 
+      
+Contexto do artigo:
+${post.content}
+
+IMPORTANTE:
+- Mantenha respostas CURTAS e OBJETIVAS (máximo 3 linhas)
+- Responda com base no conteúdo do artigo
+- Seja DIRETO e PROFISSIONAL
+- Se a pergunta não estiver relacionada ao artigo, sugira entrar em contato pelo WhatsApp: (44) 98802-4931
+
+Pergunta do usuário: ${userMessage}`;
+
+      const response = await axios.post(
+        `${API_URL}?key=${API_KEY}`,
+        {
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }]
+        }
+      );
+
+      return response.data.candidates[0].content.parts[0].text;
+    } catch (error) {
+      console.error('Error generating AI response:', error);
+      return "Desculpe, estou com dificuldades técnicas. Entre em contato pelo WhatsApp (44) 98802-4931.";
+    }
+  };
+
+  const handleSubmit = (postIndex: number) => async (e: React.FormEvent) => {
+    e.preventDefault();
+    const currentInput = input[postIndex]?.trim();
+    if (!currentInput) return;
+
+    const userMessage = { text: currentInput, isUser: true, timestamp: Date.now() };
+    setMessages(prev => ({
+      ...prev,
+      [postIndex]: [...(prev[postIndex] || []), userMessage]
+    }));
+    setInput(prev => ({ ...prev, [postIndex]: '' }));
+    setIsLoading(prev => ({ ...prev, [postIndex]: true }));
+
+    const aiResponse = await generateAIResponse(currentInput, postIndex);
+    const aiMessage = { text: aiResponse, isUser: false, timestamp: Date.now() };
+    setMessages(prev => ({
+      ...prev,
+      [postIndex]: [...(prev[postIndex] || []), aiMessage]
+    }));
+    setIsLoading(prev => ({ ...prev, [postIndex]: false }));
+
+    const utterance = new SpeechSynthesisUtterance(aiResponse);
+    utterance.lang = 'pt-BR';
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const toggleVoiceInput = (postIndex: number) => {
+    if (!recognitionRef.current) {
+      alert('Seu navegador não suporta reconhecimento de voz.');
+      return;
+    }
+
+    const isCurrentlyListening = isListening[postIndex];
+    if (isCurrentlyListening) {
+      recognitionRef.current.stop();
+    } else {
+      recognitionRef.current.start();
+    }
+
+    setIsListening(prev => ({
+      ...prev,
+      [postIndex]: !isCurrentlyListening
+    }));
+  };
 
   const togglePost = (index: number) => {
     setExpandedPost(expandedPost === index ? null : index);
@@ -240,19 +368,60 @@ const BlogPage = () => {
                         <X className="h-4 w-4" />
                       </button>
                     </div>
-                    <p className="text-gray-400 text-sm mb-4">
-                      Tem alguma dúvida sobre este assunto? Pergunte ao João!
-                    </p>
-                    <div className="flex gap-2">
+
+                    <div className="space-y-4 max-h-60 overflow-y-auto mb-4">
+                      {messages[index]?.map((message, msgIndex) => (
+                        <div
+                          key={msgIndex}
+                          className={`p-3 rounded-lg ${
+                            message.isUser
+                              ? 'bg-purple-500/20 ml-auto'
+                              : 'bg-white/10'
+                          } max-w-[80%] ${message.isUser ? 'ml-auto' : 'mr-auto'}`}
+                        >
+                          <p className="text-white">{message.text}</p>
+                          <span className="text-xs text-gray-400 block mt-1">
+                            {new Date(message.timestamp).toLocaleTimeString()}
+                          </span>
+                        </div>
+                      ))}
+                      {isLoading[index] && (
+                        <div className="bg-white/10 p-3 rounded-lg max-w-[80%]">
+                          <p className="text-white">Digitando...</p>
+                        </div>
+                      )}
+                      <div ref={messagesEndRef} />
+                    </div>
+
+                    <form onSubmit={handleSubmit(index)} className="flex gap-2">
                       <input
                         type="text"
-                        placeholder="Digite sua pergunta..."
+                        value={input[index] || ''}
+                        onChange={(e) => setInput(prev => ({ ...prev, [index]: e.target.value }))}
+                        placeholder={isListening[index] ? 'Ouvindo...' : 'Digite sua pergunta...'}
                         className="flex-1 bg-white/10 text-white border border-white/20 rounded-md p-2 focus:outline-none focus:border-white"
+                        disabled={isListening[index]}
                       />
-                      <button className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition-colors">
-                        Enviar
+                      <button
+                        type="button"
+                        onClick={() => toggleVoiceInput(index)}
+                        className={`p-2 rounded-md transition-colors ${
+                          isListening[index]
+                            ? 'bg-red-500 hover:bg-red-600'
+                            : 'bg-white/10 hover:bg-white/20'
+                        }`}
+                        title={isListening[index] ? 'Parar gravação' : 'Gravar mensagem'}
+                      >
+                        {isListening[index] ? <MicOff size={20} /> : <Mic size={20} />}
                       </button>
-                    </div>
+                      <button
+                        type="submit"
+                        className="bg-purple-500 text-white p-2 rounded-md hover:bg-purple-600 transition-colors"
+                        disabled={isListening[index]}
+                      >
+                        <Send size={20} />
+                      </button>
+                    </form>
                   </div>
                 )}
               </div>
