@@ -25,16 +25,7 @@ const Contact = () => {
             <span>+55 44 98802-4931</span>
           </a>
 
-          <a
-            href="https://www.instagram.com/httpig_pig/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
-          >
-            <Instagram className="h-6 w-6" />
-            <span>@httpig_pig</span>
-          </a>
-
+         
           <a
             href="https://www.facebook.com/profile.php?id=100080286429067"
             target="_blank"
