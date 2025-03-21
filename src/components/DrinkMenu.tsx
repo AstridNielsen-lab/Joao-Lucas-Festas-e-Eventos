@@ -14,7 +14,7 @@ const drinks = [
   {
     name: 'Gin Tônica',
     description: 'Gin, água tônica, limão, especiarias - Drink elegante e aromático',
-    image: 'https://images.unsplash.com/photo-1527761939622-9119094630cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://ecrie70.com.br/sistema/conteudos/imagem/g_66_0_1_15082022161712.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Margarita',
@@ -34,12 +34,12 @@ const drinks = [
   {
     name: 'Negroni',
     description: 'Gin, Campari, vermute tinto - O aperitivo italiano perfeito',
-    image: 'https://images.unsplash.com/photo-1592858167090-2473780d894d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/negroni.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Piña Colada',
     description: 'Rum, leite de coco, suco de abacaxi - O sabor tropical das Caraíbas',
-    image: 'https://images.unsplash.com/photo-1549746423-e5fe9cafded8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/pina%20colada.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Aperol Spritz',
@@ -54,52 +54,52 @@ const drinks = [
   {
     name: 'Espresso Martini',
     description: 'Vodka, licor de café, café expresso - O drink perfeito para os amantes de café',
-    image: 'https://images.unsplash.com/photo-1545418950-8d3d76219dec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://comumaxicaradecafe.com.br/wp-content/uploads/2021/04/espresso-martini-768x489.png?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Manhattan',
     description: 'Whiskey, vermute tinto, angostura - Elegância em estado líquido',
-    image: 'https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://devilsriverwhiskey.com/wp-content/uploads/2021/08/doom_drw_coffee_old_manhattan_01-copy-scaled-1.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Daiquiri',
     description: 'Rum branco, suco de limão, açúcar - Simplicidade e refrescância',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://www.comidaereceitas.com.br/wp-content/uploads/2021/08/bacardi_diaquiri.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Mai Tai',
     description: 'Rum escuro, licor de laranja, orgeat, limão - O clássico tiki drink',
-    image: 'https://images.unsplash.com/photo-1549746439-e6e9d8156074?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/maitay.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Whiskey Sour',
     description: 'Whiskey, limão, açúcar, clara de ovo - Suavidade e equilíbrio perfeito',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://cdn-60a97fdbc1ac1d1d10c6b0b6.closte.com/wp-content/uploads/2021/05/Whiskey-Sour-Nosta-restaurant-Cork.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Bloody Mary',
     description: 'Vodka, suco de tomate, especiarias - O drink do brunch por excelência',
-    image: 'https://images.unsplash.com/photo-1578664182354-e3878571bcd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://classic.exame.com/wp-content/uploads/2024/01/Image-4.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'French 75',
     description: 'Gin, champagne, limão, açúcar - Elegância e frescor em uma taça',
-    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/French-75.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   },
   {
     name: 'Dark n Stormy',
     description: 'Rum escuro, cerveja de gengibre, limão - A tempestade perfeita de sabores',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/dark-n-stormy.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' 
   },
   {
     name: 'Paloma',
     description: 'Tequila, refrigerante de toranja, limão - O drink mexicano refrescante',
-    image: 'https://images.unsplash.com/photo-1613461920867-9ea91b209848?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/paloma.jpeg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'  
   },
   {
     name: 'Aviation',
     description: 'Gin, licor de violeta, marasquino, limão - Um coquetel com cor única',
-    image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+    image: 'https://thumbs.dreamstime.com/b/aviation-drink-gin-lemon-juice-maraschino-liqueur-violet-cream-standing-bar-counter-247745658.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
   }
 ];
 
