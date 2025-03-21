@@ -52,7 +52,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300"
               >
-                WhatsApp: (11) 99294-6628
+                Converse com a Persona 🤖
               </a>
             </p>
           </div>
