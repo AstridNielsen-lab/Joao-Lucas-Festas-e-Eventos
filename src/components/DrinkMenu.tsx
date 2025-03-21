@@ -418,3 +418,5 @@ Pergunta do usuário: ${userMessage}`;
 };
 
 export default DrinkMenu;
+
+export default DrinkMenu
