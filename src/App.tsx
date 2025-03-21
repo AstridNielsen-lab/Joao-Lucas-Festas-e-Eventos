@@ -41,18 +41,18 @@ function App() {
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300"
               >
-                Like Look Solutions
+                Like Look Solutions 🍒 
               </a>
             </p>
             <p className="text-sm mt-2">
-              Programador Julio Campos Machado ⭐ {' '}
+              👁‍🗨 Programador Julio Campos Machado ⭐ {' '}
               <a 
                 href="https://character.ai/chat/MpcnLX8s7miWD3XSUa4I6WS4YHRKIL-qJ4AlbADDGrs" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300"
               >
-               Converse com a Persona
+               Converse com a Persona 🤖
               </a>
             </p>
           </div>
