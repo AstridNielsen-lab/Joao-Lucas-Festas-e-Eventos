@@ -52,7 +52,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="text-white hover:text-gray-300"
               >
-                Converse com a Persona 🤖
+                🤖 Converse com a Persona 🤖
               </a>
             
           </div>
