@@ -54,7 +54,7 @@ function App() {
               >
                 Converse com a Persona 🤖
               </a>
-            </p>
+            
           </div>
         </footer>
       </div>
