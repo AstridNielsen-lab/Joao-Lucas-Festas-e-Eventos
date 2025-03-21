@@ -44,7 +44,7 @@ const images: Image[] = [
     category: "Decoração"
   },
   {
-    url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "https://i.pinimg.com/originals/53/c1/fd/53c1fd28c4f047010677c07a4d4a4268.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Festa de Gala",
     category: "Corporativo"
   },
