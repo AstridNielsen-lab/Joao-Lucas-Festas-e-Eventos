@@ -54,7 +54,7 @@ const images: Image[] = [
     category: "Aniversários"
   },
   {
-    url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    url: "https://raw.githubusercontent.com/AstridNielsen-lab/Joao-Lucas-Festas-e-Eventos/refs/heads/index/src/ar%20livre.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     title: "Casamento ao Ar Livre",
     category: "Casamentos"
   },
