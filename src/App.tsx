@@ -31,32 +31,32 @@ function App() {
         </main>
         <AIChat />
         <RadioPlayer />
-        <footer className="bg-black/90 text-white py-8 border-t border-white/10 relative z-10 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pb-20 md:pb-8">
-            <p className="text-sm">
-              🛸 Desenvolvido por{' '}
-              <a 
-                href="https://likelook.wixsite.com/solutions" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300"
-              >
-                Like Look Solutions 🍒 
-              </a>
-            </p>
-            <p className="text-sm mt-2">
-              👁‍🗨 Programador Julio Campos Machado ⭐ {' '}
-              <a 
-                href="https://character.ai/chat/MpcnLX8s7miWD3XSUa4I6WS4YHRKIL-qJ4AlbADDGrs" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300"
-              >
-               Converse com a Persona 🤖
-              </a>
-            </p>
-          </div>
-        </footer>
+    <footer className="BG-BLACK/90 TEXT-WHITE PY-8 BORDER-T BORDER-WHITE/10 RELATIVE Z-10 MT-AUTO">
+  <div className="MAX-W-7XL MX-AUTO PX-4 SM:PX-6 LG:PX-8 TEXT-CENTER PB-20 MD:PB-8">
+    <p className="TEXT-SM">
+      🛸 DESENVOLVIDO POR{' '}
+      <a 
+        href="https://likelook.wixsite.com/solutions" 
+        target="_blank" 
+        rel="NOOPENER NOREFERRER"
+        className="TEXT-WHITE HOVER:TEXT-GRAY-300"
+      >
+        LIKE LOOK SOLUTIONS 🍒
+      </a>
+    </p>
+    <p className="TEXT-SM MT-2">
+      👁‍🗨 PROGRAMADOR JULIO CAMPOS MACHADO ⭐ {' '}
+      <a 
+        href="https://character.ai/chat/MpcnLX8s7miWD3XSUa4I6WS4YHRKIL-qJ4AlbADDGrs" 
+        target="_blank" 
+        rel="NOOPENER NOREFERRER"
+        className="TEXT-WHITE HOVER:TEXT-GRAY-300"
+      >
+        CONVERSE COM A PERSONA 🤖
+      </a>
+    </p>
+  </div>
+</footer>
       </div>
     </Router>
   );
